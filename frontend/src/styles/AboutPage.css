@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-width: 100vw;
+    background-color: white;
+}
+
+.about-main {
+    padding: 50px;
+    max-width: 50%;
+}
+
+.about-page-div {
+    padding-top: 50px;
+    min-height: calc(100vh - 50px - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6F4C5B
+}
+
+.about-page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+}
+
+.about-page-header > * {
+    color: #6F4C5B;
+}

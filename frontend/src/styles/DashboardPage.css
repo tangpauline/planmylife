@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-width: 100vw;
+    background-color: white;
+}
+
+.dashboard-page-div {
+    padding-top: 50px;
+    min-height: calc(100vh - 50px - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6F4C5B
+}
+
+.dashboard-page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+}
+
+.dashboard-page-header > * {
+    color: #6F4C5B;
+}
+
+.dashboard-welcome-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
+.dashboard-tasks {
+    padding: 10px;
+    margin: 10px;
+}
+
+.dashboard-tasks h3 {
+    text-align: center;
+}
+
+.dashboard-tasks-today {
+    border: 1px solid #6F4C5B;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.dashboard-tasks-today-ol {
+    display: block;
+    list-style-position: inside;
+}
+
+.dashboard-tasks-today-ol li {
+    display: list-item;
+}
+
+.planner-link {
+    color: #9E7777;
+    /* text-decoration: none; */
+}
+

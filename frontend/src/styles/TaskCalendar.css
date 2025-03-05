@@ -1,0 +1,12 @@
+.big-calendar {
+    /* height: 500;  Adjust height */
+    width: 80vw;   /* Adjust width */
+}
+
+.rbc-event {
+    background-color: #9E7777;
+}
+
+.rbc-show-more {
+    color: #9E7777;
+}

@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    background-color: #6F4C5B;
+    text-align: center;
+    height: 20px;
+    color: white;
+}

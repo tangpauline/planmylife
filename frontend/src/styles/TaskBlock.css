@@ -1,0 +1,18 @@
+
+.task-block-div {
+    border-radius: 5px;
+}
+
+.task-content-div {
+    background-color: #9E7777;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.completed-task {
+    background-color: gray;
+    color: white;
+}
+
