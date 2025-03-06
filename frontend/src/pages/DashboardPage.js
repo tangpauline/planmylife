@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../components/AuthContext';
+import { useChange } from '../components/TaskContext';
 
 import axios from 'axios';
 
@@ -9,13 +10,7 @@ import '../styles/DashboardPage.css'
 const DashboardPage = () => {
     const [todaysTasks, setTodaysTasks] = useState([])
     const { user } = useAuth();
-
-    useEffect(() => {
-        if (user) {
-            fetchTasks();
-        }
-        fetchTasks();
-    }, [user]);
+    const { change } = useChange();
 
     // Fetch tasks from database
     const fetchTasks = async () => {
@@ -32,6 +27,11 @@ const DashboardPage = () => {
             console.error("Error fetching tasks:", error);
         }
     };
+
+    useEffect(() => {
+        fetchTasks();
+        console.log("dash effect");
+    }, [user, change]);
 
     return (
         <div className="dashboard-page-div">

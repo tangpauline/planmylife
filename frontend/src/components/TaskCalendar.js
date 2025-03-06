@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { useChange } from './TaskContext';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import WeekView from './WeekView';
@@ -9,7 +10,8 @@ import '../styles/TaskCalendar.css';
 
 const localizer = momentLocalizer(moment);
 
-const TaskCalendar = ({ tasks, onFetch }) => {
+const TaskCalendar = ({ tasks }) => {
+    const { change, setChange } = useChange();
     const [events, setEvents] = useState([]);
     const [selectedTask, setSelectedTask] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +30,7 @@ const TaskCalendar = ({ tasks, onFetch }) => {
             status: task.status,
             dueDate: task.due_date
         })));
-    }, [tasks]);
+    }, [tasks, change]);
 
     const handleSelectEvent = (event) => {
         setSelectedTask(event);
@@ -39,6 +41,10 @@ const TaskCalendar = ({ tasks, onFetch }) => {
         setSelectedTask(null);
         setIsModalOpen(false);
     };
+
+    const handleDelete = () => {
+        setChange(change => !change);
+    }
 
     return (
         <div>
@@ -62,7 +68,7 @@ const TaskCalendar = ({ tasks, onFetch }) => {
                 onSelectEvent={handleSelectEvent}
                 popup={true}
             />
-            {isModalOpen && <TaskModal task={selectedTask} onClose={handleModalClose} />}
+            {isModalOpen && <TaskModal task={selectedTask} onClose={handleModalClose} onDelete={handleDelete}/>}
         </div>
     );
 };

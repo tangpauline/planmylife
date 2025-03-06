@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-big-calendar';
+import { useChange } from './TaskContext';
 import TaskBlock from './TaskBlock';
 import TaskModal from './TaskModal';
 import moment from 'moment';
@@ -8,6 +9,7 @@ import '../styles/WeekView.css'
 
 // Custom Week View Component
 const WeekView = ({ date, events }) => {
+    const { change, setChange } = useChange();
     const [selectedTask, setSelectedTask] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const startOfWeek = moment(date).startOf('week');
@@ -28,6 +30,10 @@ const WeekView = ({ date, events }) => {
         setIsModalOpen(false);
         setSelectedTask(null);
     };
+
+    const handleDelete = () => {
+        setChange(change => !change);
+    }
   
     return (
         <div className="week-view-div">
@@ -53,7 +59,7 @@ const WeekView = ({ date, events }) => {
                 </div>
             </div>
             ))}
-            {isModalOpen && <TaskModal task={selectedTask} onClose={handleModalClose} />}
+            {isModalOpen && <TaskModal task={selectedTask} onClose={handleModalClose} onDelete={handleDelete}/>}
         </div>
     );
 };

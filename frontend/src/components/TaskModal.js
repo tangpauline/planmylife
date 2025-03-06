@@ -3,12 +3,12 @@ import moment from 'moment';
 import '../styles/TaskModal.css';
 import axios from 'axios';
 
-const TaskModal = ({ task, onClose }) => {
+const TaskModal = ({ task, onClose, onDelete }) => {
     if (!task) return null; // If no task is passed, don't render the modal
 
     const dueDateStr = moment(task.due_date).format("MM/DD/YYYY");
 
-    const onDelete = async () => {
+    const handleDelete = async () => {
         try {
             const params = {
                 task_id: task.task_id
@@ -19,6 +19,7 @@ const TaskModal = ({ task, onClose }) => {
         } catch (error) {
             console.error("Error adding task:", error);
         }
+        onDelete();
         onClose();
     }
 
@@ -31,7 +32,7 @@ const TaskModal = ({ task, onClose }) => {
                 <p>{dueDateStr}</p>
                 <div className="modal-buttons">
                     <button className="close-btn" onClick={onClose}>Close</button>
-                    <button className="del-btn" onClick={onDelete}>Delete</button> 
+                    <button className="del-btn" onClick={handleDelete}>Delete</button> 
                 </div>
                 
             </div>

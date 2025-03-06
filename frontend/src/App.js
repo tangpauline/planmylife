@@ -8,33 +8,28 @@ import AboutPage from './pages/AboutPage';
 import PlannerPage from './pages/PlannerPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import DialogflowMessenger from './components/DialogflowMessenger';
-import { AuthProvider } from './components/AuthContext'
-import { useAuth } from './components/AuthContext'
+import { AuthProvider } from './components/AuthContext';
+import { TaskProvider } from './components/TaskContext';
+import { useAuth } from './components/AuthContext';
 import { useLocation } from 'react-router-dom';
 
 const App = () => {
-  // useEffect(() => {
-  //   // Initialize Dialogflow Messenger only once
-  //   const script = document.createElement("script");
-  //   script.src = "https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js";
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   window.hasInitializedDFMessenger = true; // Set a flag to track initialization
-  // }, []);
 
   return (
     <Router>
       <AuthProvider>
-        <NavBar />
-        <DialogflowMessengerManager />
-        <DialogflowMessenger />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-          <Route path="/planner" element={<ProtectedRoute><PlannerPage /></ProtectedRoute>} /> 
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-        <Footer />
+        <TaskProvider>
+          <NavBar />
+          <DialogflowMessengerManager />
+          <DialogflowMessenger />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/planner" element={<ProtectedRoute><PlannerPage /></ProtectedRoute>} /> 
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+          <Footer />
+        </TaskProvider>
       </AuthProvider>
     </Router>    
   );

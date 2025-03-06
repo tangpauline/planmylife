@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../components/AuthContext';
+import { useChange } from '../components/TaskContext';
 import TaskFormModal from '../components/TaskFormModal';
 import TaskCalendar from '../components/TaskCalendar';
 
@@ -9,14 +10,14 @@ import '../styles/PlannerPage.css'
 
 const PlannerPage = () => {
     const { user } = useAuth();
+    const { change, setChange } = useChange();
     const [showModal, setShowModal] = useState(false);
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        if (user) {
-            fetchTasks();
-        }
-    }, [user, tasks]);
+        fetchTasks();
+        console.log("planner effect");
+    }, [user, change]);
 
     // Fetch tasks from database
     const fetchTasks = async () => {
@@ -39,6 +40,7 @@ const PlannerPage = () => {
     const handleSubmit = () => {
         setShowModal(false);
         fetchTasks();
+        setChange(change => !change);
     }
 
     return (
@@ -55,7 +57,7 @@ const PlannerPage = () => {
                     onClose={() => setShowModal(false)}
                     onSubmit={handleSubmit}
                 />
-                <TaskCalendar tasks={tasks} onFetch={fetchTasks}/>
+                <TaskCalendar tasks={tasks} setChange={setChange}/>
             </main>
         </div>
     )
