@@ -14,7 +14,8 @@ const TaskModal = ({ task, onClose, onDelete }) => {
                 task_id: task.task_id
             }
             await axios.delete(process.env.REACT_APP_SERVER_URL + "/data/task/", {
-                params: params
+                params: params,
+                withCredentials: true,
             });
         } catch (error) {
             console.error("Error adding task:", error);

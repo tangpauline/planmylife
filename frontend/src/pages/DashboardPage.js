@@ -20,7 +20,7 @@ const DashboardPage = () => {
             }
             const response = await axios.get(process.env.REACT_APP_SERVER_URL + "/data/tasks/today", {
                 params: params, 
-                // withCredentials: true
+                withCredentials: true
             });
             setTodaysTasks(response.data);
         } catch (error) {

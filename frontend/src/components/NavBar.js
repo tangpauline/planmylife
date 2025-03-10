@@ -5,17 +5,17 @@ import axios from 'axios';
 
 import '../styles/NavBar.css'
 
-
 const NavBar = () => {
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
-            await axios.post(process.env.REACT_APP_SERVER_URL + "/auth/logout", {
-                withCredentials: true 
+            await axios.post(process.env.REACT_APP_SERVER_URL + "/auth/logout", {}, {
+                withCredentials: true,
             });
             setUser(null);
+
             navigate("/");  // Redirect to home
         } catch (error) {
             console.error("Error logging out: ", error);
@@ -37,7 +37,6 @@ const NavBar = () => {
                     <li><Link className="nav-link" onClick={handleLogout}>Logout</Link></li>
                 )}
             </ul>
-            
         </nav>
     )
 }

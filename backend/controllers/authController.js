@@ -56,8 +56,6 @@ const googleCallback = async (req, res) => {
             picture: payload.picture,
         };
 
-        console.log("in callback:", req.session);
-
         // Redirect back to the frontend (e.g., dashboard)
         res.redirect(process.env.CLIENT_URL + "/dashboard");
     } catch (error) {
@@ -68,25 +66,21 @@ const googleCallback = async (req, res) => {
 
 // GET /auth/session
 const sessionExists = (req, res) => {
-    // console.log("in session exists: ", req.session);
-    if (!req.session.user) {
-        return res.status(401).json({ error: "No session found" });
+    console.log("session exists: ", req.session);
+    if (!req.session.user || !req.session.user) {
+        return res.json({result: null})
     }
-    res.json({user: req.session.user});
+    res.json({result: req.session.user});
 }
 
 // POST /auth/logout -> Logs a user out and ends session
 const logout = (req, res) => {
     req.session.cookie.maxAge = 0;
-    // req.session = null;
-    // req.session.connect.sid= null
     req.session.destroy((err) => {
         if (err) {
           return res.status(500).send('Failed to log out');
         }
         res.clearCookie('connect.sid');
-        // req.session.cookie.maxAge = 0;
-        // req.session = null;
         return res.json({result: "log out successful"});
     });    
 };

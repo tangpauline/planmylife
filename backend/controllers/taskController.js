@@ -45,7 +45,6 @@ const getUserTasksToday = async (req, res) => {
 // DELETE /data/task
 const deleteTask = async (req, res) => {
     const { task_id } = req.query;
-    console.log("task id: ", task_id);
     try {
         await deleteTaskById(task_id);
         res.json({success: "Deleted."})

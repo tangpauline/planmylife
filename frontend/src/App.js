@@ -14,7 +14,6 @@ import { useAuth } from './components/AuthContext';
 import { useLocation } from 'react-router-dom';
 
 const App = () => {
-
   return (
     <Router>
       <AuthProvider>

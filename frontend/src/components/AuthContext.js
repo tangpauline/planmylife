@@ -9,19 +9,21 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-        axios.get(process.env.REACT_APP_SERVER_URL + "/auth/session", {
-            withCredentials: true,
-        })
-        .then(res => {
-            setUser(res.data.user);
-        })
-        .catch((error) => {
-            setUser(null);
-            console.error("Error with auth:", error);
-        })
-        .finally(() => {
-            setLoading(false);
-        });
+    if (!user) {
+      axios.get(process.env.REACT_APP_SERVER_URL + "/auth/session", {
+        withCredentials: true,
+      })
+      .then(res => {
+        setUser(res.data.result)
+      })
+      .catch(err => {
+        setUser(null);
+        console.log("Error auth context:", err)
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    };
   }, []);
 
   if (loading) {

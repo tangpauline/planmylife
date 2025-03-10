@@ -22,13 +22,12 @@ const PlannerPage = () => {
     // Fetch tasks from database
     const fetchTasks = async () => {
         try {
-            // console.log(user)
             const params = {
                 user_id: user.user_id
             }
             const response = await axios.get(process.env.REACT_APP_SERVER_URL + "/data/tasks", {
                 params: params, 
-                // withCredentials: true
+                withCredentials: true
             });
             setTasks(response.data);
         } catch (error) {

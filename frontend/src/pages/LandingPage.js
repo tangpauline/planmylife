@@ -3,7 +3,7 @@ import '../styles/LandingPage.css'
 
 const LandingPage = () => {
     const handleLogin = () => {
-        window.location.href = "http://localhost:5001/auth/google"; // calls backend to handle OAuth
+        window.location.href = process.env.REACT_APP_SERVER_URL + "/auth/google"; // calls backend to handle OAuth
     };
 
     return (
